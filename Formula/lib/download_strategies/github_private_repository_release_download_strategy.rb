@@ -5,7 +5,7 @@ require "json"
 
 # This custom download strategy is required to download releases from a private GitHub repository.
 # It uses the HOMEBREW_GITHUB_API_TOKEN environment variable for authentication.
-class GitHubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
+class GithubPrivateRepositoryReleaseDownloadStrategy < CurlDownloadStrategy
   # Set up owner, repo, and token on initialization
   def initialize(url, name, version, **meta)
     super
