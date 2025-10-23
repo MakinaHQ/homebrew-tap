@@ -5,15 +5,18 @@ class Spellcaster < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.1.0/spellcaster-aarch64-apple-darwin.tar.xz"
+        :using => :github_private_release
       sha256 "8769a28d90ff6dc2a479e9d46d20475966107168d53b0921281107429df8377b"
     end
     if Hardware::CPU.intel?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.1.0/spellcaster-x86_64-apple-darwin.tar.xz"
+        :using => :github_private_release
       sha256 "da392daf2f9ec2d2ff8c4502dd20c3532e20a2be9c34e895ee87d6f2b2606dd5"
     end
   end
   if OS.linux? && Hardware::CPU.intel?
     url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.1.0/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
+      :using => :github_private_release
     sha256 "8ba3c19a90eef0f9d01574a3c0368d7c476b062f2305871195c0e51f3cf5f78a"
   end
 
