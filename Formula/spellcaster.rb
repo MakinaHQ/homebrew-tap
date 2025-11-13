@@ -6,16 +6,16 @@ class Spellcaster < Formula
   version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-aarch64-apple-darwin.tar.xz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-aarch64-apple-darwin.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
       sha256 "68af9c65d9f42f0b1002efcfbd54b0907c5b14389cf3ca916702e1efe80c31b3"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-apple-darwin.tar.xz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-apple-darwin.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
       sha256 "22d015a70bbc12a2ff4c7331ef424f2325c7e096853e7fc8d8b4970c0e887e8a"
     end
   end
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-unknown-linux-gnu.tar.xz", :using => GitHubPrivateRepositoryReleaseDownloadStrategy
+    url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-unknown-linux-gnu.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
     sha256 "1f5a0374dd690f40b8bf6853ecc89283f296732800e2d3662369c81695743703"
   end
 
