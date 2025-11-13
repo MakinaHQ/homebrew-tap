@@ -3,7 +3,6 @@ require_relative "../lib/git_hub_private_repository_release_download_strategy"
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
-  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-aarch64-apple-darwin.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
