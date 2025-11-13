@@ -1,4 +1,4 @@
-require_relative "lib/custom_download_strategy"
+require_relative "lib/git_hub_private_repository_release_download_strategy"
 
 class Spellcaster < Formula
   desc "Makina operator CLI"
