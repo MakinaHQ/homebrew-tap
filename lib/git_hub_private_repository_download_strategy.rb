@@ -1,3 +1,6 @@
+# typed: strict
+# frozen_string_literal: true
+
 require "download_strategy"
 
 # GitHubPrivateRepositoryDownloadStrategy downloads contents from GitHub
@@ -37,7 +40,7 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
   end
 
   def set_github_token
-    @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
+    @github_token = ENV.fetch("HOMEBREW_GITHUB_API_TOKEN", nil)
     unless @github_token
       raise CurlDownloadStrategyError, "Environmental variable HOMEBREW_GITHUB_API_TOKEN is required."
     end
