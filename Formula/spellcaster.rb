@@ -1,21 +1,20 @@
-require_relative "../lib/git_hub_private_repository_release_download_strategy"
-
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
+  version "0.3.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-aarch64-apple-darwin.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "68af9c65d9f42f0b1002efcfbd54b0907c5b14389cf3ca916702e1efe80c31b3"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.0/spellcaster-aarch64-apple-darwin.tar.xz"
+      sha256 "40c489a9bb2d02bb1fa033a5cfb22e8dffbecbfbb1f885765c65dfbc8f3dff24"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-apple-darwin.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "22d015a70bbc12a2ff4c7331ef424f2325c7e096853e7fc8d8b4970c0e887e8a"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.0/spellcaster-x86_64-apple-darwin.tar.xz"
+      sha256 "b71dca4fff4154584f9a41daf008bb332b80532e37b3593b63e9ce679ed08cf2"
     end
   end
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.2.0/spellcaster-x86_64-unknown-linux-gnu.tar.xz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-    sha256 "1f5a0374dd690f40b8bf6853ecc89283f296732800e2d3662369c81695743703"
+    url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.0/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
+    sha256 "cc76039585611fb797142ee4406c33bb972be5e73580e15efc737267089385b1"
   end
 
   BINARY_ALIASES = {
