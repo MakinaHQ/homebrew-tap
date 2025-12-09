@@ -1,7 +1,6 @@
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
-  version "0.3.0"
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.0/spellcaster-aarch64-apple-darwin.tar.xz"
