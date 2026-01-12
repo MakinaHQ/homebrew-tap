@@ -5,22 +5,21 @@ class Spellcaster < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.1/spellcaster-aarch64-apple-darwin.tar.xz"
-      sha256 "17120ddd06487c6dc9ea92e28e26619af9ad267f720ddd4c009537d8cbce97c8"
+      sha256 "28ab4024710c75deb70fbebeafcc1e43f2a999949f302542fb31185ee54b0d0d"
     end
     if Hardware::CPU.intel?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.1/spellcaster-x86_64-apple-darwin.tar.xz"
-      sha256 "e675383df7ab12a4d2e5b9b5c8000af4760f4697b09d233907129e917985ec33"
+      sha256 "a4d46805da0c7ec3ed2d20e41db757515ddf07b94a8251fb88f0a2cd4544170a"
     end
   end
   if OS.linux? && Hardware::CPU.intel?
       url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.3.1/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "f364e3040092ef8bf9f87b452bc8907c944317dbaaa2957e5c688e85ba86b59b"
+      sha256 "cd3b643e63cb07d75ec3eddcb91895c66320cfb772214f4617b2efaa20b1cafc"
   end
 
   BINARY_ALIASES = {
     "aarch64-apple-darwin":     {},
     "x86_64-apple-darwin":      {},
-    "x86_64-pc-windows-gnu":    {},
     "x86_64-unknown-linux-gnu": {},
   }.freeze
 
