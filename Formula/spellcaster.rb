@@ -1,3 +1,4 @@
+# test
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
