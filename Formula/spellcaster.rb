@@ -3,16 +3,16 @@ class Spellcaster < Formula
   homepage "https://makina.finance"
   version "0.5.1"
   if OS.mac? && Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.1/spellcaster-aarch64-apple-darwin.tar.xz"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.1/spellcaster-aarch64-apple-darwin.tar.xz"
       sha256 "6e307f7d30c58c0a6d86a5843c3c9c24f13119974bdf502bca16d0242ae8c299"
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.1/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.1/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
       sha256 "30d511c7359b68f0092a89631afcafe493e54062af8552736fcc4afb05c86848"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.1/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.1/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
       sha256 "4b0e229e367310498282157e26e93c06a7031234745090061f3f706b361528ee"
     end
   end
