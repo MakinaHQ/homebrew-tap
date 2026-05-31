@@ -1,19 +1,19 @@
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
-  version "0.5.9"
+  version "0.5.10"
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.9/spellcaster-aarch64-apple-darwin.tar.xz"
-    sha256 "45fcf02aa6a2545078757047be9771f55521a7cf33eecafec8633294c418ad1e"
+    url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.10/spellcaster-aarch64-apple-darwin.tar.xz"
+    sha256 "efdfb2af766d59581b7e1b76832c2734226c2f1bbbff2a973fb8cdbe88254bb7"
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.9/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "b62b61dfb0cb77c0a1a3caa88fe356b56a815728b7e2e7afa1c4e8efc807ddce"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.10/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "8ce4bcd79f7b197193c210a8793e329ef3207baac263e804a86c50fa7dc81bcb"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.5.9/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "0901b27c73f221859ef3ee4d122c940cdb80dffad8dc1ed45b578876ab01059b"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.5.10/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "d59aab6b8022ca42eb11327ce7ab40274441eb782ed2729c069a99a5df7d7118"
     end
   end
 
