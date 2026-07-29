@@ -1,27 +1,29 @@
 class Spellcaster < Formula
   desc "Makina operator CLI"
   homepage "https://makina.finance"
-  version "0.6.1"
-  if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.6.1/spellcaster-aarch64-apple-darwin.tar.xz"
-    sha256 "dbab821bac6a9c0fb0c7772397cd1165179a4a168189e686d5cdb5fb01be2d7a"
+  version "0.6.2"
+  if OS.mac?
+    if Hardware::CPU.arm?
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.6.2/spellcaster-aarch64-apple-darwin.tar.xz"
+      sha256 "b362915d89b69ae81c72ea9a080eac1c55db7e736e8666a3802e303e1fc607fe"
+    end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.6.1/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "ca92da73cc334cf91a8705c27e5111a9a8edb35f8359b84be48105fd0308258e"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.6.2/spellcaster-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "87a29a847469169c38ee30e1ebf5ba79a3688d0e5a8eb8b70cc1fb6fd3825762"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.6.1/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "19564448967c12aba1624217a65082fa3ad45caa98bf48c208e6323807b95281"
+      url "https://github.com/MakinaHQ/makina-rs/releases/download/spellcaster-v0.6.2/spellcaster-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "d21908790eee5a3f5d8a8964fc87faf7258f124d832bf79dfdc1246348b2ab80"
     end
   end
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin":      {},
+    "aarch64-apple-darwin": {},
     "aarch64-unknown-linux-gnu": {},
-    "x86_64-unknown-linux-gnu":  {},
-  }.freeze
+    "x86_64-unknown-linux-gnu": {}
+  }
 
   def target_triple
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -39,9 +41,15 @@ class Spellcaster < Formula
   end
 
   def install
-    bin.install "spellcaster" if OS.mac? && Hardware::CPU.arm?
-    bin.install "spellcaster" if OS.linux? && Hardware::CPU.arm?
-    bin.install "spellcaster" if OS.linux? && Hardware::CPU.intel?
+    if OS.mac? && Hardware::CPU.arm?
+      bin.install "spellcaster"
+    end
+    if OS.linux? && Hardware::CPU.arm?
+      bin.install "spellcaster"
+    end
+    if OS.linux? && Hardware::CPU.intel?
+      bin.install "spellcaster"
+    end
 
     install_binary_aliases!
 
