@@ -1,19 +1,19 @@
 class Transpiler < Formula
-  desc "transpiles Makina instructions into executable weiroll scripts"
+  desc "Transpiles Makina instructions into executable weiroll scripts"
   homepage "https://operators.makina.finance/"
-  version "0.2.4"
+  version "0.2.7"
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.4/transpiler-aarch64-apple-darwin.tar.xz"
-    sha256 "70b9e88448b1f4600d303d94cb8c3703d747b2cb04576cc1569b3ae17f69d85a"
+    url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.7/transpiler-aarch64-apple-darwin.tar.xz"
+    sha256 "afbf1331c48b4e0a2ca4683535718cc0e1b33ff4cfc5fc3c178ef36411de2620"
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.4/transpiler-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "fcfd36654a586be3b4297c1da6fb5360842f26be78f7c95fd9c5fa8b10edf006"
+      url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.7/transpiler-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "894a30dc64f95b6f9ac172f80d9cbb34f988ba632bcaa3ec178cd7691011e695"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.4/transpiler-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "9b42296ed74ec9a0830bd0e1f1724e730de30405ba7fae8f96b505bde2a76054"
+      url "https://github.com/MakinaHQ/transpiler/releases/download/v0.2.7/transpiler-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "9b6fb125510147875762031c236b0307655341e6a579c5ff6621f2ddd9af749e"
     end
   end
 
