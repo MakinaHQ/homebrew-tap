@@ -1,0 +1,70 @@
+name: Sync formulae
+
+# Regenerates Formula/*.rb from the public GitHub releases of each tool.
+#
+# The release bot (cargo-dist) overwrites Formula/<tool>.rb when it publishes.
+# This job normalises that file, writes a formula for every published release so
+# older versions stay installable, and refreshes the version tables in README.md.
+#
+# It supersedes the old makina-rs -> spellcaster-releases sed patch: download
+# URLs are now rendered from scripts/sync_formulae.py's own config.
+
+on:
+  push:
+    paths:
+      - "Formula/**"
+      - "scripts/sync_formulae.py"
+      - ".github/workflows/sync-versions.yml"
+  schedule:
+    # Weekly, to pick up releases published without a push to this repo.
+    - cron: "15 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      tool:
+        description: "Limit to one tool"
+        required: false
+        type: choice
+        options: ["all", "spellcaster", "transpiler"]
+        default: "all"
+      version:
+        description: "Pin one exact patch version, e.g. 0.5.3 (requires a tool)"
+        required: false
+        type: string
+
+# Back-to-back release pushes must not race each other into conflicting commits.
+concurrency:
+  group: sync-versions-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Regenerate formulae
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOOL: ${{ inputs.tool }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          args=()
+          if [ -n "$TOOL" ] && [ "$TOOL" != "all" ]; then args+=(--tool "$TOOL"); fi
+          if [ -n "$VERSION" ]; then args+=(--version "$VERSION"); fi
+          python3 scripts/sync_formulae.py ${args[@]+"${args[@]}"}
+
+      - name: Commit and push
+        run: |
+          if [ -z "$(git status --porcelain Formula README.md)" ]; then
+            echo "No changes."
+            exit 0
+          fi
+          git diff
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add Formula README.md
+          git commit -m "chore: sync formulae from releases"
+          git push

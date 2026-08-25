@@ -1,0 +1,108 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Install every exact-version pin too, not just the rolling ones"
+        type: boolean
+        default: false
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: style + audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Formulae match the releases they are generated from
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/sync_formulae.py --check
+
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Register the checkout as a tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/makinahq"
+          mkdir -p "$taps"
+          ln -sfn "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+
+      - run: brew style makinahq/tap
+
+      - name: Homebrew reads the right version out of every URL
+        run: brew ruby scripts/check_url_versions.rb
+
+      - name: brew audit
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: brew audit --strict --online --tap makinahq/tap
+
+  install:
+    name: install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Register the checkout as a tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/makinahq"
+          mkdir -p "$taps"
+          ln -sfn "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+
+      - name: Install and test formulae
+        env:
+          FULL: ${{ inputs.full }}
+        run: |
+          set -eo pipefail
+          failed=""
+          for path in Formula/*.rb; do
+            name=$(basename "$path" .rb)
+            # Exact pins (spellcaster@0.6.2) all render from the same template
+            # as their rolling alias (spellcaster@0.6), so installing every one
+            # of them on every run buys little. `full` covers them on demand.
+            case "$name" in
+              *@*.*.*)
+                if [ "$FULL" != "true" ]; then
+                  continue
+                fi
+                ;;
+            esac
+            formula="makinahq/tap/$name"
+            url=$(brew info --json=v2 "$formula" 2>/dev/null \
+                  | python3 -c 'import json,sys; print(json.load(sys.stdin)["formulae"][0]["urls"]["stable"]["url"] or "")' \
+                  2>/dev/null || true)
+            # A formula that publishes no build for this OS/arch is expected to
+            # be unsatisfiable here; skip it rather than fail the matrix.
+            if [ -z "$url" ]; then
+              echo "::notice::$formula has no build for this platform, skipping"
+              continue
+            fi
+            echo "::group::$formula"
+            if brew install --formula "$formula" && brew test "$formula"; then
+              echo "ok: $formula"
+            else
+              failed="$failed $formula"
+            fi
+            echo "::endgroup::"
+          done
+          if [ -n "$failed" ]; then
+            echo "failed:$failed"
+            exit 1
+          fi

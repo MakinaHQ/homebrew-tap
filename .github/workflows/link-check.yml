@@ -1,0 +1,45 @@
+name: Link check
+
+# Re-validates every formula's download URL and homepage on a schedule, so a
+# release repository going private or being renamed is caught here rather than
+# by a user running `brew install`.
+
+on:
+  schedule:
+    - cron: "15 6 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Register the checkout as a tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/makinahq"
+          mkdir -p "$taps"
+          ln -sfn "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+
+      - name: brew audit --online
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: brew audit --online --tap makinahq/tap
+
+      - name: Every download URL still resolves
+        run: |
+          set -eo pipefail
+          status=0
+          # `[^"#]` stops the match at the `#/` rename fragment: that suffix is
+          # for Homebrew's version scanner, and curl would send it verbatim.
+          while read -r url; do
+            code=$(curl -sSL -o /dev/null -w '%{http_code}' --max-time 120 "$url" || echo 000)
+            echo "$code $url"
+            [ "$code" = "200" ] || status=1
+          done < <(grep -ho 'https://[^"#]*\.tar\.xz' Formula/*.rb | sort -u)
+          exit $status
