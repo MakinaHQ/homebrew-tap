@@ -18,13 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
 
       - name: Register the checkout as a tap
         run: |
           taps="$(brew --repository)/Library/Taps/makinahq"
           mkdir -p "$taps"
           ln -sfn "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+          # Runner images ship third-party taps of their own (macos-14 has
+          # aws/tap), and Homebrew refuses to load anything while an untrusted
+          # tap is present. Official taps report "always trusted" and exit 0.
+          brew tap | xargs -I{} brew trust {}
 
       - name: brew audit --online
         env:
