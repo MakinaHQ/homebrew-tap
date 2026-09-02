@@ -68,11 +68,12 @@ brew pin spellcaster
 
 | Formula              | Installs | Platforms                               | Notes                                          |
 | -------------------- | -------- | --------------------------------------- | ---------------------------------------------- |
-| `spellcaster`        | 0.7.1    | macOS arm64, Linux arm64, Linux x86_64  | latest release; follows `brew upgrade`         |
+| `spellcaster`        | 0.7.2    | macOS arm64, Linux arm64, Linux x86_64  | latest release; follows `brew upgrade`         |
 | `spellcaster@0.6`    | 0.6.2    | macOS arm64, Linux arm64, Linux x86_64  | newest 0.6.x; moves when a new 0.6 patch ships |
 | `spellcaster@0.5`    | 0.5.10   | macOS arm64, Linux arm64, Linux x86_64  | newest 0.5.x; moves when a new 0.5 patch ships |
 | `spellcaster@0.4`    | 0.4.3    | macOS arm64, Linux arm64, Linux x86_64  | newest 0.4.x; moves when a new 0.4 patch ships |
 | `spellcaster@0.3`    | 0.3.1    | macOS arm64, macOS x86_64, Linux x86_64 | newest 0.3.x; moves when a new 0.3 patch ships |
+| `spellcaster@0.7.2`  | 0.7.2    | macOS arm64, Linux arm64, Linux x86_64  | exact pin; never moves                         |
 | `spellcaster@0.7.1`  | 0.7.1    | macOS arm64, Linux arm64, Linux x86_64  | exact pin; never moves                         |
 | `spellcaster@0.7.0`  | 0.7.0    | macOS arm64, Linux arm64, Linux x86_64  | exact pin; never moves                         |
 | `spellcaster@0.6.2`  | 0.6.2    | macOS arm64, Linux arm64, Linux x86_64  | exact pin; never moves                         |
