@@ -12,19 +12,19 @@ class Spellcaster < Formula
   on_macos do
     depends_on arch: :arm64
     on_arm do
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.5/spellcaster-aarch64-apple-darwin.tar.xz#/spellcaster-0.7.5.tar.xz"
-      sha256 "43b03a3473eca3ae41eb570b133e1aca2d4a0af5e040afebc442d045e011e09c"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.6/spellcaster-aarch64-apple-darwin.tar.xz#/spellcaster-0.7.6.tar.xz"
+      sha256 "d2a56eb6fb3c5c8a6a36d705732b953ea068232af39073a023537de7844b4117"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.5/spellcaster-aarch64-unknown-linux-gnu.tar.xz#/spellcaster-0.7.5.tar.xz"
-      sha256 "f8ab4813805a45040df1ebe32bf6e6e7bbe35967232f7f954a2dfcc70304e88a"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.6/spellcaster-aarch64-unknown-linux-gnu.tar.xz#/spellcaster-0.7.6.tar.xz"
+      sha256 "8046ca20cb3a898ffae437c98d4daeb98222da29d26bab1f57ee95686711339f"
     end
     on_intel do
-      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.5/spellcaster-x86_64-unknown-linux-gnu.tar.xz#/spellcaster-0.7.5.tar.xz"
-      sha256 "186a47ca4efdc4e27b282061b969628363be6d2e9309fd0fc6bba1fca22c799c"
+      url "https://github.com/MakinaHQ/spellcaster-releases/releases/download/spellcaster-v0.7.6/spellcaster-x86_64-unknown-linux-gnu.tar.xz#/spellcaster-0.7.6.tar.xz"
+      sha256 "de9d6335733267dc058726c83224d849c639992f3cda3391304221d83f016fe4"
     end
   end
 
