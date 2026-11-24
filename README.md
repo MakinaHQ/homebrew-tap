@@ -103,8 +103,9 @@ brew pin spellcaster
 
 | Formula            | Installs | Platforms                              | Notes                                          |
 | ------------------ | -------- | -------------------------------------- | ---------------------------------------------- |
-| `transpiler`       | 0.2.7    | macOS arm64, Linux arm64, Linux x86_64 | latest release; follows `brew upgrade`         |
+| `transpiler`       | 0.2.8    | macOS arm64, Linux arm64, Linux x86_64 | latest release; follows `brew upgrade`         |
 | `transpiler@0.1`   | 0.1.0    | macOS arm64, Linux x86_64              | newest 0.1.x; moves when a new 0.1 patch ships |
+| `transpiler@0.2.8` | 0.2.8    | macOS arm64, Linux arm64, Linux x86_64 | exact pin; never moves                         |
 | `transpiler@0.2.7` | 0.2.7    | macOS arm64, Linux arm64, Linux x86_64 | exact pin; never moves                         |
 | `transpiler@0.2.4` | 0.2.4    | macOS arm64, Linux arm64, Linux x86_64 | exact pin; never moves                         |
 | `transpiler@0.2.3` | 0.2.3    | macOS arm64, Linux arm64, Linux x86_64 | exact pin; never moves                         |
